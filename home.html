@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Notification App</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="app.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notification App</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Create Notification</h2>
-        <input type="text" id="title" placeholder="Title">
-        <textarea id="description" placeholder="Description"></textarea>
-        <button onclick="sendNotification()">Send Notification</button>
-    </div>
+
+<div class="notification-container">
+    <h2>Notifications</h2>
+    <button onclick="showNotification()">Show Notification</button>
+</div>
+
+<!-- This part is for demonstration purposes only -->
+<script>
+    function showNotification() {
+        if ('Notification' in window) {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === 'granted') {
+                    new Notification('Sample Notification', {
+                        body: 'This is a sample notification.'
+                    });
+                }
+            });
+        } else {
+            alert('This browser does not support notifications.');
+        }
+    }
+</script>
+
 </body>
 </html>
